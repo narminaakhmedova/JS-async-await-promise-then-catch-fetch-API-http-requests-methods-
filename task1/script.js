@@ -35,7 +35,7 @@ document.addEventListener("DOMContentLoaded", () => {
             card.className = "col-12 col-md-6 col-lg-3 text-center";
             card.innerHTML = `<div class="card ${todo.completed ? "bg-success": "bg-danger"}">
             <div class="card-body">
-                    <h5 class="card-title">Title:${todo.title}</h5>
+                    <h5 class="card-title">${todo.title}</h5>
                     <p class="card-text">ID:${todo.id}</p>
                     <p class="card-text">Status:${todo.completed}</p>
                     <button onclick="gotoDetails(${todo.id})" class="btn btn-primary">Get Info</button>
