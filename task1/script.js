@@ -38,7 +38,7 @@ document.addEventListener("DOMContentLoaded", () => {
                     <h5 class="card-title">Title:${todo.title}</h5>
                     <p class="card-text">ID:${todo.id}</p>
                     <p class="card-text">Status:${todo.completed}</p>
-                    <button onclick="todoClick(${todo.id})" class="btn btn-primary">Get Info</button>
+                    <button onclick="gotoDetails(${todo.id})" class="btn btn-primary">Get Info</button>
 
                 </div>
             </div>
@@ -82,5 +82,10 @@ document.addEventListener("DOMContentLoaded", () => {
     }
     showTodos(filteredTodos);
     });
+
+    // details page
+    window.gotoDetails= function(id){
+        window.location.href=`details.html?id=${id}`
+    }
 });
 

@@ -7,3 +7,9 @@
 body{
     background-color: lightblue;
 }
+
+.form-input, .form-select{
+border: none;
+border-radius: 10px;
+}
+
