@@ -4,6 +4,8 @@ document.addEventListener("DOMContentLoaded", () => {
     const showAllBtn = document.getElementById("show-all-btn");
     const todosContainer = document.getElementById("todos-container");
     const loader = document.getElementById("loader");
+    const sortSelect = document.getElementById("sort-select");
+
 
     let todos = [];
     let filteredTodos = [];
@@ -25,7 +27,6 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
 
-
     function showTodos(todos) {
         todosContainer.innerHTML = "";
         todos.forEach(todo => {
@@ -43,5 +44,23 @@ document.addEventListener("DOMContentLoaded", () => {
             todosContainer.appendChild(card);
         });
     };
+
+    // search input part
+    searchBtn.addEventListener("click", function(){
+        const searchTerm = searchInp.value.toLowerCase();
+        filteredTodos = todos.filter(todo => todo.title.toLowerCase().includes(searchTerm));
+        showTodos(filteredTodos);
+    })
+
+    // search btn part
+    showAllBtn.addEventListener("click", ()=>{
+        filteredTodos=todos;
+        showTodos(filteredTodos);
+    })
+
+
+
+    
+    
 })
 
