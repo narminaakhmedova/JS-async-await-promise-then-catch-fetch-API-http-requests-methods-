@@ -5,6 +5,7 @@ document.addEventListener("DOMContentLoaded", () => {
     const todosContainer = document.getElementById("todos-container");
     const loader = document.getElementById("loader");
     const sortSelect = document.getElementById("sort-select");
+    const filterSelect = document.getElementById("filter-select");
 
 
     let todos = [];
@@ -34,10 +35,11 @@ document.addEventListener("DOMContentLoaded", () => {
             card.className = "col-12 col-md-6 col-lg-3 text-center";
             card.innerHTML = `<div class="card ${todo.completed ? "bg-success": "bg-danger"}">
             <div class="card-body">
-                    <h5 class="card-title">${todo.title}</h5>
-                    <p class="card-text">${todo.id}</p>
-                    <p class="card-text">${todo.status}</p>
-                    <button onclick="${todo.id}" class="btn btn-primary" >Get Info</button>
+                    <h5 class="card-title">Title:${todo.title}</h5>
+                    <p class="card-text">ID:${todo.id}</p>
+                    <p class="card-text">Status:${todo.completed}</p>
+                    <button onclick="todoClick(${todo.id})" class="btn btn-primary">Get Info</button>
+
                 </div>
             </div>
             `;
@@ -58,9 +60,27 @@ document.addEventListener("DOMContentLoaded", () => {
         showTodos(filteredTodos);
     })
 
-
-
-    
-    
+ // sorting
+    sortSelect.addEventListener("change", ()=>{
+    const sortValue = sortSelect.value;
+    filteredTodos.sort((a, b) => sortValue === "az" ? a.title.localeCompare(b.title) : b.title.localeCompare(a.title));
+    showTodos(filteredTodos);
 })
+
+
+// filtering
+    filterSelect.addEventListener("change", ()=>{
+    const filterValue = filterSelect.value;
+    if(filterValue==="all"){
+        filteredTodos=todos;
+    }
+    else if(filterValue==="completed"){
+        filteredTodos=todos.filter(todo=>todo.completed);
+    }
+    else if(filterValue==="incomplete"){
+        filteredTodos=todos.filter(todo=>!todo.completed);
+    }
+    showTodos(filteredTodos);
+    });
+});
 
